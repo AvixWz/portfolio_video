@@ -22,13 +22,9 @@ const achievements: Achievement[] = [
   { id: 6, year: '2021', title: 'First Major Client', description: 'Landed first Fortune 500 client, marking a significant career milestone', icon: Award, color: 'from-indigo-500 to-indigo-600', category: 'Milestone' }
 ];
 
-const AchievementsTimeline: React.FC = () => {
+const TreeTimeline: React.FC = () => {
   return (
     <section className="py-32 bg-gray-50 dark:bg-gray-900 relative overflow-hidden rounded-3xl mx-4 sm:mx-8 shadow-2xl border border-gray-200/20 dark:border-gray-800/40">
-      {/* Background blobs */}
-      <div className="absolute -top-40 -left-40 w-[36rem] h-[36rem] bg-gradient-to-br from-blue-400/20 via-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-blob pointer-events-none" />
-      <div className="absolute -bottom-40 -right-40 w-[36rem] h-[36rem] bg-gradient-to-br from-green-400/20 via-teal-400/10 to-cyan-400/10 rounded-full blur-3xl animate-blob animation-delay-2000 pointer-events-none" />
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -42,78 +38,76 @@ const AchievementsTimeline: React.FC = () => {
             Achievements & Milestones
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Key moments, awards, and milestones showcasing growth and impact.
+            A living tree-style timeline showcasing growth and achievements dynamically.
           </p>
         </motion.div>
 
-        <div className="relative">
-          {/* Central timeline line */}
-          <div className="absolute left-1/2 top-0 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-400 to-purple-500 rounded-full" />
+        <div className="relative flex flex-col items-center">
+          {/* Vertical trunk line with growth animation */}
+          <motion.div
+            initial={{ height: 0 }}
+            whileInView={{ height: '100%' }}
+            transition={{ duration: 1.5, type: 'spring', stiffness: 50 }}
+            viewport={{ once: true }}
+            className="absolute w-1 bg-gradient-to-b from-blue-400 to-purple-500 left-1/2 transform -translate-x-1/2 rounded-full"
+          />
 
-          <div className="space-y-24">
-            {achievements.map((achievement, index) => {
-              const isLeft = index % 2 === 0;
+          {achievements.map((achievement, index) => {
+            const isLeft = index % 2 === 0;
 
-              return (
+            return (
+              <motion.div
+                key={achievement.id}
+                className="relative w-full flex items-center justify-center my-20"
+              >
+                {/* Animated branch */}
                 <motion.div
-                  key={achievement.id}
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.15 }}
-                  viewport={{ once: true }}
-                  className={`flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12`}
+                  initial={{ width: 0 }}
+                  whileInView={{ width: '50%' }}
+                  transition={{ duration: 1, delay: index * 0.3, type: 'spring', stiffness: 50 }}
+                  className={`absolute top-0 h-1 bg-gray-300 dark:bg-gray-700 ${isLeft ? 'right-1/2' : 'left-1/2'}`}
+                />
+
+                {/* Node */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 0.6, delay: index * 0.3 + 0.5, type: 'spring', stiffness: 100 }}
+                  whileHover={{ scale: 1.3 }}
+                  className={`z-10 w-20 h-20 rounded-full bg-gradient-to-r ${achievement.color} flex items-center justify-center shadow-2xl border-4 border-white dark:border-gray-900`}
                 >
-                  {/* Left/Right card */}
-                  <div className={`flex-1 max-w-full lg:max-w-[500px] ${isLeft ? 'lg:pr-12 lg:text-right' : 'lg:pl-12 lg:text-left'}`}>
-                    <motion.div
-                      whileHover={{ scale: 1.05, y: -5 }}
-                      className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700"
-                    >
-                      <div className="flex items-start justify-between mb-5">
-                        <div className={`w-16 h-16 bg-gradient-to-r ${achievement.color} rounded-xl flex items-center justify-center shadow-lg`}>
-                          <achievement.icon className="text-white" size={28} />
-                        </div>
-                        <div className={`${isLeft ? 'text-right' : 'text-left'}`}>
-                          <div className="text-3xl font-bold text-gray-900 dark:text-white">{achievement.year}</div>
-                          <div className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide">{achievement.category}</div>
-                        </div>
-                      </div>
-
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">{achievement.title}</h3>
-
-                      {achievement.metric && (
-                        <div className={`inline-block px-4 py-1 bg-gradient-to-r ${achievement.color} text-white text-sm font-semibold rounded-full mb-4 shadow-md`}>
-                          {achievement.metric}
-                        </div>
-                      )}
-
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">{achievement.description}</p>
-                    </motion.div>
-                  </div>
-
-                  {/* Timeline node */}
-                  <div className="hidden lg:flex flex-col items-center justify-center w-24 h-24 relative">
-                    <motion.div
-                      whileHover={{ scale: 1.25 }}
-                      className={`w-20 h-20 bg-gradient-to-r ${achievement.color} rounded-full flex items-center justify-center shadow-2xl border-4 border-white dark:border-gray-900 z-10`}
-                    >
-                      <achievement.icon className="text-white" size={28} />
-                    </motion.div>
-
-                    <motion.div
-                      animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                      className={`absolute w-20 h-20 bg-gradient-to-r ${achievement.color} rounded-full`}
-                    />
-                  </div>
+                  <achievement.icon className="text-white" size={28} />
                 </motion.div>
-              );
-            })}
-          </div>
+
+                {/* Card */}
+                <motion.div
+                  initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.3 + 0.6 }}
+                  className={`absolute top-0 w-96 p-6 bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 ${isLeft ? 'right-full mr-12 text-right' : 'left-full ml-12 text-left'}`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-lg font-bold text-gray-900 dark:text-white">{achievement.year}</div>
+                    <div className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">{achievement.category}</div>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{achievement.title}</h3>
+
+                  {achievement.metric && (
+                    <div className={`inline-block px-3 py-1 bg-gradient-to-r ${achievement.color} text-white text-xs font-semibold rounded-full mb-2`}>
+                      {achievement.metric}
+                    </div>
+                  )}
+
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">{achievement.description}</p>
+                </motion.div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
 
-export default AchievementsTimeline;
+export default TreeTimeline;

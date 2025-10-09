@@ -180,9 +180,7 @@ const About: React.FC = () => {
         {/* Tech Stack */}
         <TechStack />
 
-        Achievements
-        <AchievementsTimeline />
-
+        
         {/* Experience */}
         <section className="mb-20">
           <motion.div
