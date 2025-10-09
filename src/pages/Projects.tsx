@@ -40,7 +40,7 @@ const Projects: React.FC = () => {
       title: "Procedural World Engine",
       description: "GPU-driven terrain generation and dynamic weather simulation.",
       tech: ["WebGPU", "Noise", "Physics"],
-      image: "/assets/project3.jpg",
+      image: "/assets/henry.png",
       video: "/assets/project3.mp4",
       year: "2025",
     },
