@@ -180,7 +180,7 @@ const About: React.FC = () => {
         {/* Tech Stack */}
         <TechStack />
 
-        {/* Achievements */}
+        Achievements
         <AchievementsTimeline />
 
         {/* Experience */}

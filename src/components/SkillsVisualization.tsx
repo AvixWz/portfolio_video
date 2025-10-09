@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Palette, Monitor, Smartphone, Camera, Zap, Globe, Layers } from 'lucide-react';
+import { Zap, Monitor, Camera, Play } from 'lucide-react';
 
 interface Skill {
   name: string;
@@ -12,66 +12,38 @@ interface Skill {
 
 const skills: Skill[] = [
   {
-    name: 'Graphic Design',
-    level: 95,
-    icon: Palette,
-    color: 'from-emerald-500 to-teal-600',
-    description: 'Visual identity, logos, and brand design'
-  },
-  {
-    name: 'UI/UX Design',
+    name: 'Adobe Premiere Pro',
     level: 90,
     icon: Monitor,
-    color: 'from-cyan-500 to-blue-600',
-    description: 'User interfaces and experience design'
-  },
-  // {
-  //   name: 'Web Development',
-  //   level: 85,
-  //   icon: Code,
-  //   color: 'from-green-500 to-emerald-600',
-  //   description: 'Frontend development and responsive design'
-  // },
-  {
-    name: 'Mobile Design',
-    level: 88,
-    icon: Smartphone,
-    color: 'from-teal-500 to-cyan-600',
-    description: 'iOS and Android app interface design'
+    color: 'from-purple-500 to-indigo-600',
+    description: 'Professional video editing and timeline management'
   },
   {
-    name: 'Photography',
-    level: 80,
-    icon: Camera,
-    color: 'from-pink-500 to-rose-600',
-    description: 'Product and portrait photography'
-  },
-  {
-    name: 'Motion Graphics',
-    level: 75,
+    name: 'After Effects',
+    level: 85,
     icon: Zap,
-    color: 'from-amber-500 to-orange-500',
-    description: 'Animation and video editing'
+    color: 'from-pink-500 to-rose-600',
+    description: 'Motion graphics, VFX, and animation workflows'
   },
   {
-    name: 'Brand Strategy',
-    level: 92,
-    icon: Globe,
-    color: 'from-teal-500 to-emerald-600',
-    description: 'Brand positioning and market analysis'
+    name: 'DaVinci Resolve',
+    level: 80,
+    icon: Play,
+    color: 'from-teal-500 to-cyan-600',
+    description: 'Color grading, post-production, and video finishing'
   },
   {
-    name: '3D Design',
-    level: 70,
-    icon: Layers,
-    color: 'from-red-500 to-orange-600',
-    description: 'Product visualization and 3D modeling'
+    name: 'Final Cut Pro',
+    level: 75,
+    icon: Camera,
+    color: 'from-orange-500 to-amber-600',
+    description: 'Apple video editing software for professional projects'
   }
 ];
 
-const SkillsVisualization: React.FC = () => {
+const VideoSoftwareSkills: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-slate-100/50 to-stone-200/30 dark:bg-gradient-to-b dark:from-neutral-900 dark:to-slate-900 rounded-[80px] mx-4 sm:mx-8 my-12">
+    <section className="py-20 bg-gradient-to-b from-slate-100/50 to-stone-200/30 dark:bg-gradient-to-b dark:from-neutral-900 dark:to-slate-900 rounded-[60px] mx-4 sm:mx-8 my-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -80,22 +52,14 @@ const SkillsVisualization: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="inline-block mb-4"
-          >
-            <span className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-sm font-bold rounded-full shadow-lg">
-              Skills & Expertise
-            </span>
-          </motion.div>
+          <span className="px-6 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-sm font-bold rounded-full shadow-lg inline-block mb-4">
+            Video Production Software
+          </span>
           <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Skills & Expertise
+            Video Software Expertise
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            A comprehensive overview of my design and technical capabilities
+            Mastery of the most powerful video editing and motion design tools
           </p>
         </motion.div>
 
@@ -107,12 +71,12 @@ const SkillsVisualization: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -15, scale: 1.05 }}
-              className="group relative bg-gradient-to-br from-white via-slate-50 to-stone-100 dark:from-slate-800 dark:via-neutral-800 dark:to-zinc-800 rounded-3xl p-8 shadow-2xl border-2 border-emerald-100/50 dark:border-teal-800/50 hover:border-emerald-300/70 dark:hover:border-teal-600/70 overflow-hidden hover:shadow-emerald-300/30 dark:hover:shadow-teal-900/40 transition-all duration-500"
+              whileHover={{ y: -10, scale: 1.05 }}
+              className="group relative bg-gradient-to-br from-white via-slate-50 to-stone-100 dark:from-slate-800 dark:via-neutral-800 dark:to-zinc-800 rounded-3xl p-8 shadow-2xl border-2 border-purple-100/50 dark:border-indigo-800/50 hover:border-purple-300/70 dark:hover:border-indigo-600/70 overflow-hidden transition-all duration-500"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
 
-              <div className="relative z-10">
+              <div className="relative z-10 text-center">
                 <motion.div
                   className={`w-16 h-16 bg-gradient-to-br ${skill.color} rounded-2xl flex items-center justify-center mb-5 shadow-xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-500`}
                   whileHover={{ rotate: 360 }}
@@ -131,7 +95,7 @@ const SkillsVisualization: React.FC = () => {
 
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-xs font-semibold text-emerald-600 dark:text-teal-400">
+                    <span className="text-xs font-semibold text-purple-600 dark:text-indigo-400">
                       Proficiency
                     </span>
                     <span className="text-lg font-bold text-gray-900 dark:text-white">
@@ -176,4 +140,4 @@ const SkillsVisualization: React.FC = () => {
   );
 };
 
-export default SkillsVisualization;
+export default VideoSoftwareSkills;
