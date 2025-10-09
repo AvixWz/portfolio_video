@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare, Lightbulb, Palette, Code, TestTube, Rocket } from 'lucide-react';
+import { MessageSquare, Lightbulb, Palette, Video, TestTube, Rocket } from 'lucide-react';
 
 interface ProcessStep {
   id: number;
@@ -16,7 +16,7 @@ const processSteps: ProcessStep[] = [
   {
     id: 1,
     title: 'Discovery & Research',
-    description: 'Understanding your vision, goals, and target audience through detailed consultation.',
+    description: 'Understanding your vision, goals, and target audience.',
     icon: MessageSquare,
     duration: '1-2 days',
     deliverables: ['Project brief', 'Research findings', 'Mood board'],
@@ -25,53 +25,53 @@ const processSteps: ProcessStep[] = [
   {
     id: 2,
     title: 'Concept Development',
-    description: 'Brainstorming and developing initial concepts based on research insights.',
+    description: 'Brainstorming and developing initial creative concepts.',
     icon: Lightbulb,
     duration: '2-3 days',
-    deliverables: ['Concept sketches', 'Wireframes', 'Style exploration'],
+    deliverables: ['Concept sketches', 'Storyboards', 'Style exploration'],
     color: 'from-purple-500 to-purple-600'
   },
   {
     id: 3,
     title: 'Design Creation',
-    description: 'Crafting the visual design with attention to every detail and user experience.',
+    description: 'Crafting visual designs with attention to detail.',
     icon: Palette,
     duration: '1-2 weeks',
-    deliverables: ['High-fidelity designs', 'Design system', 'Asset library'],
+    deliverables: ['High-fidelity designs', 'Brand assets', 'Illustrations'],
     color: 'from-green-500 to-green-600'
   },
   {
     id: 4,
-    title: 'Development',
-    description: 'Bringing designs to life with clean, efficient code and modern technologies.',
-    icon: Code,
-    duration: '2-4 weeks',
-    deliverables: ['Responsive website', 'Interactive prototypes', 'Source code'],
-    color: 'from-indigo-500 to-indigo-600'
+    title: 'Video Editing & Motion Graphics',
+    description: 'Creating polished video content and dynamic animations.',
+    icon: Video,
+    duration: '3-5 days',
+    deliverables: ['Edited videos', 'Motion graphics', 'Social media clips'],
+    color: 'from-pink-500 to-pink-600'
   },
   {
     id: 5,
     title: 'Testing & Refinement',
-    description: 'Thorough testing across devices and browsers with iterative improvements.',
+    description: 'Reviewing outputs to ensure quality and consistency.',
     icon: TestTube,
-    duration: '3-5 days',
-    deliverables: ['Test reports', 'Bug fixes', 'Performance optimization'],
+    duration: '1-2 days',
+    deliverables: ['Feedback review', 'Color correction', 'Final tweaks'],
     color: 'from-yellow-500 to-orange-500'
   },
   {
     id: 6,
-    title: 'Launch & Support',
-    description: 'Deploying your project and providing ongoing support for a smooth launch.',
+    title: 'Delivery & Support',
+    description: 'Handing over final files and providing ongoing guidance.',
     icon: Rocket,
-    duration: '1-2 days',
-    deliverables: ['Live deployment', 'Documentation', 'Training materials'],
+    duration: '1 day',
+    deliverables: ['Final assets', 'Documentation', 'Support'],
     color: 'from-teal-500 to-teal-600'
   }
 ];
 
 const ProcessTimeline: React.FC = () => {
   return (
-    <section className="py-20 bg-gray-50/50 dark:bg-gray-800/30">
+    <section className="py-20 bg-transparent relative z-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -80,86 +80,46 @@ const ProcessTimeline: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            My Design Process
+          <h2 className="text-4xl font-bold text-white mb-4 text-gradient">
+            My Creative Process
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            A proven methodology that ensures exceptional results every time
+          <p className="text-xl text-gray-200 max-w-2xl mx-auto">
+            Step-by-step approach to delivering stunning design and video content
           </p>
         </motion.div>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-600 rounded-full hidden lg:block" />
+        <div className="space-y-8">
+          {processSteps.map((step, index) => (
+            <motion.div
+              key={step.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6"
+            >
+              {/* Icon */}
+              <div className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center shadow-lg flex-shrink-0`}>
+                <step.icon className="text-white" size={28} />
+              </div>
 
-          <div className="space-y-12">
-            {processSteps.map((step, index) => (
-              <motion.div
-                key={step.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className={`flex items-center ${
-                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                } flex-col lg:space-x-8`}
-              >
-                {/* Content */}
-                <div className="flex-1 lg:max-w-md">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700"
-                  >
-                    <div className="flex items-center mb-4">
-                      <div className={`w-12 h-12 bg-gradient-to-r ${step.color} rounded-xl flex items-center justify-center mr-4`}>
-                        <step.icon className="text-white" size={24} />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                          {step.title}
-                        </h3>
-                        <p className="text-sm text-black dark:text-white font-medium">
-                         {step.duration}
-                        </p>
-                      </div>
-                    </div>
-
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                      {step.description}
-                    </p>
-
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                        Deliverables:
-                      </h4>
-                      <ul className="space-y-1">
-                        {step.deliverables.map((deliverable) => (
-                          <li key={deliverable} className="text-sm text-gray-600 dark:text-gray-300 flex items-center">
-                            <div className="w-1.5 h-1.5 bg-black dark:bg-white rounded-full mr-2" />
-                           <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2" />
-                            {deliverable}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </motion.div>
+              {/* Glassy Pill/Card */}
+              <div className="glass rounded-full px-6 py-4 flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0 sm:space-x-4 border border-white/10 shadow-xl backdrop-blur-md">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg font-bold text-white truncate">{step.title}</h3>
+                  <p className="text-sm text-gray-200">{step.duration}</p>
+                  <p className="text-sm text-gray-200 mt-1 truncate">{step.description}</p>
                 </div>
-
-                {/* Timeline node */}
-                <div className="relative hidden lg:block">
-                  <motion.div
-                    whileHover={{ scale: 1.2 }}
-                    className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center shadow-lg border-4 border-white dark:border-gray-900`}
-                  >
-                    <span className="text-white font-bold text-lg">{step.id}</span>
-                  </motion.div>
+                <div className="flex flex-wrap gap-2 mt-2 sm:mt-0">
+                  {step.deliverables.map((item) => (
+                    <span key={item} className="pill">
+                      {item}
+                    </span>
+                  ))}
                 </div>
-
-                {/* Spacer for opposite side */}
-                <div className="flex-1 lg:max-w-md hidden lg:block" />
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
