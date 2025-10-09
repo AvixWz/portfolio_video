@@ -15,18 +15,10 @@ interface Project {
 
 const Projects: React.FC = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [loadedVideos, setLoadedVideos] = useState<Record<number, boolean>>({});
 
   const projects: Project[] = [
     {
-      id: 1,
-      title: "Neural Interface Dashboard",
-      description: "Real-time neural data visualization with WebGL acceleration.",
-      tech: ["React", "Three.js", "D3.js"],
-      image: "/assets/henry.png",
-      video: "/assets/coin.mp4",
-      year: "2025",
-    },
-        {
       id: 1,
       title: "Neural Interface Dashboard",
       description: "Real-time neural data visualization with WebGL acceleration.",
@@ -73,8 +65,9 @@ const Projects: React.FC = () => {
         {projects.map((project) => {
           const videoRef = useRef<HTMLVideoElement | null>(null);
           const isHovered = hoveredProject === project.id;
+          const videoLoaded = loadedVideos[project.id];
 
-          // Pause and reset video on hover out
+          // Pause and reset video when hover ends
           useEffect(() => {
             if (!isHovered && videoRef.current) {
               videoRef.current.pause();
@@ -87,7 +80,13 @@ const Projects: React.FC = () => {
               key={project.id}
               onHoverStart={() => {
                 setHoveredProject(project.id);
-                if (videoRef.current) videoRef.current.play();
+                if (!videoLoaded && project.video) {
+                  // Lazy-load video source only when hovered
+                  setLoadedVideos((prev) => ({ ...prev, [project.id]: true }));
+                }
+                if (videoRef.current) {
+                  videoRef.current.play().catch(() => {});
+                }
               }}
               onHoverEnd={() => {
                 setHoveredProject(null);
@@ -103,8 +102,8 @@ const Projects: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="relative aspect-video overflow-hidden">
-                {/* Hover video */}
-                {project.video && (
+                {/* Hover video (lazy loaded) */}
+                {project.video && videoLoaded && (
                   <video
                     ref={videoRef}
                     src={project.video}
@@ -131,7 +130,7 @@ const Projects: React.FC = () => {
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-70 group-hover:opacity-40 transition-opacity duration-700" />
 
-                {/* Icon (non-clickable, purely visual) */}
+                {/* Visual play/pause icon */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 360 }}
