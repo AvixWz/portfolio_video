@@ -82,9 +82,19 @@ const About: React.FC = () => {
     },
   ];
 
+  const stats = [
+    { icon: Clock, label: '5+ Years', desc: 'Experience' },
+    { icon: Users, label: '150+', desc: 'Projects' },
+    { icon: Globe, label: '15+', desc: 'Countries' },
+  ];
+
   return (
-    <div className="pt-24 pb-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-24 pb-20 relative overflow-hidden">
+      {/* Background Floating Blobs */}
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-gradient-to-br from-blue-400/20 via-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-blob pointer-events-none" />
+      <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-gradient-to-br from-green-400/20 via-teal-400/10 to-cyan-400/10 rounded-full blur-3xl animate-blob animation-delay-2000 pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -102,6 +112,7 @@ const About: React.FC = () => {
         {/* About Section */}
         <section className="mb-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Image */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -119,6 +130,7 @@ const About: React.FC = () => {
               </div>
             </motion.div>
 
+            {/* Intro */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -130,27 +142,19 @@ const About: React.FC = () => {
                 Hi, I'm Henry 👋
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                I'm a passionate graphic designer with over 5 years of experience in creating
-                stunning visual identities and digital experiences. My journey began with a
-                simple love for art and has evolved into a comprehensive skill set spanning
-                brand design, web interfaces, and print media.
+                I'm a passionate graphic designer with over 5 years of experience in creating stunning visual identities and digital experiences. Every project is an opportunity to craft something unique and impactful.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                I believe that great design has the power to transform businesses and connect
-                with people on an emotional level. Every project I take on is an opportunity
-                to solve problems creatively and make a lasting impact.
+                I believe design can transform businesses and touch people emotionally. Let’s make something beautiful together 💡.
               </p>
 
+              {/* Stats */}
               <div className="grid grid-cols-2 gap-6 mt-8">
-                {[
-                  { icon: Clock, label: '5+ Years', desc: 'Experience' },
-                  { icon: Users, label: '150+', desc: 'Projects' },
-                  { icon: Globe, label: '15+', desc: 'Countries' },
-                ].map((stat, index) => (
+                {stats.map((stat, index) => (
                   <motion.div
                     key={stat.label}
                     whileHover={{ scale: 1.05 }}
-                    className="text-center p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl backdrop-blur-sm"
+                    className="text-center p-4 bg-white/5 dark:bg-gray-900/20 backdrop-blur-md rounded-xl"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -168,22 +172,19 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* Skills Section */}
+        {/* Skills */}
         <section className="mb-20">
-          <SkillsVisualization />
+          <SkillsVisualization skills={skills} />
         </section>
 
         {/* Tech Stack */}
         <TechStack />
 
-        {/* Achievements Timeline */}
+        {/* Achievements */}
         <AchievementsTimeline />
 
-        {/* Experience Section */}
+        {/* Experience */}
         <section className="mb-20">
-          {/* One-line space before heading */}
-          <div className="h-4" />
-
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -207,7 +208,8 @@ const About: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700"
+                whileHover={{ scale: 1.02, y: -5 }}
+                className="relative bg-white/5 dark:bg-gray-900/20 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-white/10 dark:border-gray-700/20"
               >
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
                   <div>
@@ -233,10 +235,7 @@ const About: React.FC = () => {
                   </h4>
                   <ul className="space-y-1">
                     {exp.achievements.map((achievement, idx) => (
-                      <li
-                        key={idx}
-                        className="text-gray-600 dark:text-gray-300 flex items-center"
-                      >
+                      <li key={idx} className="text-gray-600 dark:text-gray-300 flex items-center">
                         <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mr-3" />
                         {achievement}
                       </li>
@@ -248,8 +247,8 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* Values Section */}
-        <section>
+        {/* Core Values */}
+        <section className="mb-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -261,7 +260,7 @@ const About: React.FC = () => {
               My Core Values
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              The principles that guide every design decision
+              Principles that guide every design decision
             </p>
           </motion.div>
 
@@ -273,8 +272,8 @@ const About: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-                className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700"
+                whileHover={{ y: -10, scale: 1.03 }}
+                className="text-center p-6 bg-white/5 dark:bg-gray-900/20 backdrop-blur-md rounded-2xl shadow-lg border border-white/10 dark:border-gray-700/20"
               >
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <value.icon className="text-white" size={32} />
