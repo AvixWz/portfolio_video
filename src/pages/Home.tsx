@@ -158,9 +158,6 @@ const Home: React.FC = () => {
       {/* Tech Stack */}
       <TechStack />
 
-      {/* Achievements Timeline */}
-      {/* <AchievementsTimeline /> */}
-
       {/* Testimonials Section */}
       <Testimonials />
 

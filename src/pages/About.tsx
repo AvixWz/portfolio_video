@@ -180,7 +180,9 @@ const About: React.FC = () => {
         {/* Tech Stack */}
         <TechStack />
 
-        
+        {/* Achievements Timeline */}
+        <AchievementsTimeline />
+
         {/* Experience */}
         <section className="mb-20">
           <motion.div
@@ -245,7 +247,7 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* Core Values */}
+        {/* Core Values - Pill Style */}
         <section className="mb-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -257,12 +259,12 @@ const About: React.FC = () => {
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               My Core Values
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Principles that guide every design decision
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="flex flex-wrap justify-center gap-6">
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
@@ -270,14 +272,16 @@ const About: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10, scale: 1.03 }}
-                className="text-center p-6 bg-white/5 dark:bg-gray-900/20 backdrop-blur-md rounded-2xl shadow-lg border border-white/10 dark:border-gray-700/20"
+                whileHover={{ y: -5, scale: 1.05 }}
+                className="flex items-center p-6 min-w-[280px] max-w-[350px] bg-white/10 dark:bg-gray-900/20 backdrop-blur-md rounded-full shadow-xl border border-white/20 dark:border-gray-700/30"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="text-white" size={32} />
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <value.icon className="text-white" size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{value.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{value.description}</p>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{value.title}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">{value.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>
