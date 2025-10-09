@@ -43,11 +43,14 @@ const Header: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               className="flex items-center"
             >
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                H
-              </div>
+              {/* ✅ Circular Image Logo */}
+              <img
+                src="/assets/henry.png" // 👈 Update this if your image is in a different location
+                alt="HenryGFX Logo"
+                className="w-10 h-10 rounded-full object-cover shadow-lg"
+              />
               <span className="ml-2 text-xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                HenryGFX
+                Henry
               </span>
             </motion.div>
           </Link>
@@ -69,12 +72,12 @@ const Header: React.FC = () => {
                   <motion.div
                     layoutId="activeTab"
                     className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 rounded-full"
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                   />
                 )}
               </Link>
             ))}
-            
+
             {/* Theme Toggle */}
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -96,7 +99,7 @@ const Header: React.FC = () => {
             >
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
             </motion.button>
-            
+
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
