@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { SEO } from '../components/SEO';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import InteractiveGlobe from '../components/InteractiveGlobe';
 import Testimonials from '../components/Testimonials';
@@ -20,7 +20,6 @@ import Footer from '../components/Footer';
 
 const Home: React.FC = () => {
   useEffect(() => {
-    // Smooth scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
@@ -35,12 +34,12 @@ const Home: React.FC = () => {
     { label: 'Happy Clients', value: 42, suffix: '' },
     { label: 'Years Experience', value: 5, suffix: '+' },
     { label: 'High Budget Projects', value: 25, suffix: '+' },
-
   ];
 
   return (
     <div className="relative">
       <SEO {...homePageSEO} />
+      
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center pt-16 pb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,9 +89,9 @@ const Home: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Stats */}
+          {/* Stats Section - Pill Style */}
           <motion.div 
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
@@ -101,7 +100,7 @@ const Home: React.FC = () => {
               <motion.div
                 key={stat.label}
                 whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-br from-white/90 via-slate-50/80 to-stone-100/90 dark:from-slate-800/90 dark:via-neutral-800/80 dark:to-zinc-800/90 backdrop-blur-lg rounded-3xl p-8 border-2 border-emerald-200/30 dark:border-teal-700/30 shadow-xl hover:shadow-2xl hover:shadow-emerald-300/40 dark:hover:shadow-teal-900/40 hover:border-emerald-400/50 dark:hover:border-teal-500/50 transition-all duration-500"
+                className="bg-white/20 dark:bg-gray-800/20 backdrop-blur-md rounded-full py-6 px-10 shadow-xl hover:shadow-2xl border border-white/10 dark:border-gray-700/20 transition-all duration-500 flex flex-col items-center justify-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
@@ -146,6 +145,7 @@ const Home: React.FC = () => {
           </motion.div>
         </div>
       </section>
+
       {/* Services Section */}
       <Services />
 
@@ -163,6 +163,7 @@ const Home: React.FC = () => {
 
       {/* FAQ Section */}
       <FAQ />
+
       <Footer />
     </div>
   );
