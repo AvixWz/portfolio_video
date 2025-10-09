@@ -26,6 +26,15 @@ const Projects: React.FC = () => {
       video: "/assets/coin.mp4",
       year: "2025",
     },
+        {
+      id: 1,
+      title: "Neural Interface Dashboard",
+      description: "Real-time neural data visualization with WebGL acceleration.",
+      tech: ["React", "Three.js", "D3.js"],
+      image: "/assets/henry.png",
+      video: "/assets/coin.mp4",
+      year: "2025",
+    },
     {
       id: 2,
       title: "Design System Builder",
