@@ -117,8 +117,9 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Interactive Globe Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-100/50 to-stone-200/30 dark:bg-gradient-to-b dark:from-neutral-900 dark:to-slate-900">
+      {/* Interactive Globe Section */}  
+      {/* removeing this for temp purpose */}
+      {/* <section className="py-20 bg-gradient-to-b from-slate-100/50 to-stone-200/30 dark:bg-gradient-to-b dark:from-neutral-900 dark:to-slate-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -144,7 +145,7 @@ const Home: React.FC = () => {
             <InteractiveGlobe />
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Services Section */}
       <Services />
