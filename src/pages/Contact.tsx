@@ -124,10 +124,10 @@ const Contact: React.FC = () => {
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
                   {method.title}
                 </h3>
-                <p className="text-lg text-blue-600 dark:text-blue-400 font-semibold text-center mb-3">
+                <p className="text-lg text-emerald-600 dark:text-emerald-400 font-semibold text-center mb-3">
                   {method.value}
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 text-center text-sm">
+                <p className="text-gray-700 dark:text-gray-300 text-center text-sm">
                   {method.description}
                 </p>
               </motion.a>
@@ -174,19 +174,19 @@ const Contact: React.FC = () => {
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                       {social.name}
                     </h3>
-                    <p className="text-blue-600 dark:text-blue-400 font-medium">
+                    <p className="text-emerald-600 dark:text-emerald-400 font-medium">
                       {social.handle}
                     </p>
                   </div>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
                   {social.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
                     {social.followers} followers
                   </span>
-                  <span className="text-blue-600 dark:text-blue-400 text-sm font-medium group-hover:underline">
+                  <span className="text-emerald-600 dark:text-emerald-400 text-sm font-medium group-hover:underline">
                     Follow →
                   </span>
                 </div>
@@ -205,7 +205,7 @@ const Contact: React.FC = () => {
             className="bg-white/5 dark:bg-gray-900/20 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-white/10 dark:border-gray-700/20"
           >
             <div className="flex items-center mb-6">
-              <Clock className="text-blue-600 dark:text-blue-400 mr-3" size={32} />
+              <Clock className="text-emerald-600 dark:text-emerald-400 mr-3" size={32} />
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                 Working Hours
               </h3>
@@ -214,9 +214,9 @@ const Contact: React.FC = () => {
               {workingHours.map((schedule) => (
                 <div
                   key={schedule.day}
-                  className="flex justify-between items-center py-2 border-b border-white/10 dark:border-gray-700 last:border-b-0"
+                  className="flex justify-between items-center py-2 border-b border-gray-300/30 dark:border-gray-700 last:border-b-0"
                 >
-                  <span className="text-gray-400 dark:text-gray-300 font-medium">
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
                     {schedule.day}
                   </span>
                   <span className="text-gray-900 dark:text-white font-semibold">
@@ -225,8 +225,8 @@ const Contact: React.FC = () => {
                 </div>
               ))}
             </div>
-            <div className="mt-6 p-4 bg-blue-50/20 dark:bg-blue-900/20 rounded-xl">
-              <p className="text-sm text-blue-600 dark:text-blue-400">
+            <div className="mt-6 p-4 bg-emerald-50/30 dark:bg-emerald-900/20 rounded-xl">
+              <p className="text-sm text-emerald-700 dark:text-emerald-300">
                 <strong>Response Time:</strong> Typically respond within 2-4 hours during working hours.
               </p>
             </div>
@@ -242,15 +242,15 @@ const Contact: React.FC = () => {
             {/* Location */}
             <div className="bg-white/5 dark:bg-gray-900/20 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-white/10 dark:border-gray-700/20">
               <div className="flex items-center mb-4">
-                <MapPin className="text-blue-600 dark:text-blue-400 mr-3" size={32} />
+                <MapPin className="text-emerald-600 dark:text-emerald-400 mr-3" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                   Location
                 </h3>
               </div>
-              <p className="text-gray-400 dark:text-gray-300 mb-4">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
                 Based in Tripura, India (IST Timezone)
               </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Available for remote work worldwide.
               </p>
             </div>
@@ -268,10 +268,10 @@ const Contact: React.FC = () => {
                   'Final delivery with all source files and assets',
                 ].map((step, index) => (
                   <div key={step} className="flex items-start">
-                    <div className="w-6 h-6 bg-blue-600 dark:bg-blue-400 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
+                    <div className="w-6 h-6 bg-emerald-600 dark:bg-emerald-400 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
                       {index + 1}
                     </div>
-                    <span className="text-gray-400 dark:text-gray-300">
+                    <span className="text-gray-700 dark:text-gray-300">
                       {step}
                     </span>
                   </div>
@@ -287,12 +287,12 @@ const Contact: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mt-20 p-8 bg-gradient-to-r from-blue-50/20 to-purple-50/20 dark:from-gray-800/20 dark:to-gray-900/20 rounded-2xl backdrop-blur-md"
+          className="text-center mt-20 p-8 bg-gradient-to-r from-emerald-50/20 to-teal-50/20 dark:from-gray-800/20 dark:to-gray-900/20 rounded-2xl backdrop-blur-md"
         >
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Ready to Start Your Project?
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
             Don't hesitate to reach out - I'd love to hear about your vision!
           </p>
           <motion.a
