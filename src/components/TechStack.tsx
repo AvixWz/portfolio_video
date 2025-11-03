@@ -29,7 +29,7 @@ const VideoTechStack: React.FC = () => {
   };
 
   return (
-    <section className="relative py-20 bg-transparent">
+    <section className="relative py-20 bg-gradient-to-b from-slate-50/50 to-stone-200/30 dark:from-neutral-950 dark:to-slate-900 transition-colors duration-300">
       {/* Particles background */}
       <Particles
         id="tsparticles-video"
@@ -44,9 +44,8 @@ const VideoTechStack: React.FC = () => {
           },
           particles: {
             color: { value: ['#00FFB2', '#14B8A6', '#06B6D4'] },
-            links: { enable: true, distance: 120, color: '#14B8A6', opacity: 0.2, width: 1 },
-            collisions: { enable: false },
-            move: { enable: true, speed: 1, direction: 'none', random: true, straight: false, outModes: 'out' },
+            links: { enable: true, distance: 120, color: '#14B8A6', opacity: 0.25, width: 1 },
+            move: { enable: true, speed: 1, random: true, outModes: 'out' },
             number: { density: { enable: true, area: 800 }, value: 50 },
             opacity: { value: 0.4 },
             shape: { type: 'circle' },
@@ -66,14 +65,15 @@ const VideoTechStack: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-white mb-4 text-gradient">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Video & Motion Design Tools
           </h2>
-          <p className="text-xl text-gray-200 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
             The essential tools I use to create cinematic videos, motion graphics, and animations.
           </p>
         </motion.div>
 
+        {/* Category Groups */}
         {categories.map((category, categoryIndex) => (
           <motion.div
             key={category}
@@ -83,7 +83,9 @@ const VideoTechStack: React.FC = () => {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h3 className="text-2xl font-bold text-white mb-6 text-center">{category} Tools</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+              {category} Tools
+            </h3>
 
             <div className="flex flex-wrap justify-center gap-6">
               {tools
@@ -96,23 +98,32 @@ const VideoTechStack: React.FC = () => {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     whileHover={{ y: -5, scale: 1.03 }}
-                    className="glass flex items-center justify-between px-8 py-4 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33%-1.5rem)]"
+                    className="backdrop-blur-md bg-white/70 dark:bg-neutral-800/70 border border-emerald-100/50 dark:border-teal-800/50 shadow-xl hover:shadow-2xl rounded-3xl transition-all duration-500 flex items-center justify-between px-8 py-4 w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33%-1.5rem)]"
                   >
                     {/* Icon */}
                     <div className="text-3xl flex-shrink-0">{tool.logo}</div>
 
-                    {/* Content */}
+                    {/* Text + Progress */}
                     <div className="flex-1 flex flex-col ml-4 min-w-0">
-                      <span className="font-bold text-white truncate">{tool.name}</span>
-                      <span className="text-sm text-gray-200 truncate">{tool.description}</span>
+                      <span className="font-semibold text-gray-900 dark:text-white truncate">
+                        {tool.name}
+                      </span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 truncate">
+                        {tool.description}
+                      </span>
 
                       {/* Progress Bar */}
-                      <div className="mt-2 w-full bg-gray-700/40 rounded-full h-3">
+                      <div className="mt-2 w-full bg-gray-300/40 dark:bg-gray-700/40 rounded-full h-3">
                         <motion.div
-                          className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 h-3 rounded-full shadow-md shadow-emerald-500/50"
+                          className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 h-3 rounded-full shadow-md shadow-emerald-500/30"
                           initial={{ width: 0 }}
                           whileInView={{ width: `${tool.proficiency}%` }}
-                          transition={{ duration: 1.5, delay: index * 0.1, type: "spring", stiffness: 50 }}
+                          transition={{
+                            duration: 1.5,
+                            delay: index * 0.1,
+                            type: 'spring',
+                            stiffness: 50,
+                          }}
                           viewport={{ once: true }}
                         />
                       </div>
