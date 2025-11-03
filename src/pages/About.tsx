@@ -91,10 +91,12 @@ const About: React.FC = () => {
   return (
     <div className="pt-24 pb-20 relative overflow-hidden">
       {/* Background Floating Blobs */}
+
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-gradient-to-br from-blue-400/20 via-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-blob pointer-events-none" />
       <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-gradient-to-br from-green-400/20 via-teal-400/10 to-cyan-400/10 rounded-full blur-3xl animate-blob animation-delay-2000 pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -112,6 +114,7 @@ const About: React.FC = () => {
         {/* About Section */}
         <section className="mb-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
+
             {/* Image */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -177,8 +180,7 @@ const About: React.FC = () => {
           <SkillsVisualization skills={skills} />
         </section>
 
-        {/* Tech Stack */}
-        <TechStack />
+
 
         {/* Achievements Timeline */}
         <AchievementsTimeline />
@@ -190,11 +192,15 @@ const About: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mt-16 mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+
               Professional Experience
+              
             </h2>
+
+
             <p className="text-xl text-gray-600 dark:text-gray-300">
               My journey through various roles and achievements
             </p>
