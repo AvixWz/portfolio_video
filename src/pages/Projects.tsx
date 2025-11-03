@@ -20,7 +20,7 @@ const Projects: React.FC = () => {
       id: 1,
       title: "Brand logo",
       description:
-        "Real-time neural data visualization with WebGL acceleration.",
+        "Brand logo",
       tech: ["Video", "Motion Graphics", "After Effects"],
       image: "/assets/henry.png",
       video: "/assets/coin.mp4",
@@ -29,7 +29,7 @@ const Projects: React.FC = () => {
     {
       id: 2,
       title: "Brand logo",
-      description: "Modular UI framework for rapid prototyping and theming.",
+      description: "Brand logo",
       tech: ["Video", "Motion Graphics", "After Effects"],
       image: "/assets/henry.png",
       video: "/assets/coin.mp4",
@@ -38,7 +38,7 @@ const Projects: React.FC = () => {
     {
       id: 3,
       title: "Brand logo",
-      description: "GPU-driven terrain generation and dynamic weather simulation.",
+      description: "Brand logo",
       tech: ["Video", "Motion Graphics", "After Effects"],
       image: "/assets/henry.png",
       video: "/assets/coin.mp4",
@@ -46,7 +46,7 @@ const Projects: React.FC = () => {
     },
     {
       id: 4,
-      title: "Brand logo",
+      title: "Brand Identity Design",
       description:
         "Minimalist visual identity and logo design for a SaaS brand.",
       tech: ["Image", "Motion Graphics", "After Effects"],
