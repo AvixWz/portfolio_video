@@ -18,7 +18,7 @@ const Projects: React.FC = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "Neural Interface Dashboard",
+      title: "Brand logo",
       description:
         "Real-time neural data visualization with WebGL acceleration.",
       tech: ["Video", "Motion Graphics", "After Effects"],
@@ -28,7 +28,7 @@ const Projects: React.FC = () => {
     },
     {
       id: 2,
-      title: "Design System Builder",
+      title: "Brand logo",
       description: "Modular UI framework for rapid prototyping and theming.",
       tech: ["Video", "Motion Graphics", "After Effects"],
       image: "/assets/henry.png",
@@ -37,7 +37,7 @@ const Projects: React.FC = () => {
     },
     {
       id: 3,
-      title: "Procedural World Engine",
+      title: "Brand logo",
       description: "GPU-driven terrain generation and dynamic weather simulation.",
       tech: ["Video", "Motion Graphics", "After Effects"],
       image: "/assets/henry.png",
@@ -46,7 +46,7 @@ const Projects: React.FC = () => {
     },
     {
       id: 4,
-      title: "Brand Identity Design",
+      title: "Brand logo",
       description:
         "Minimalist visual identity and logo design for a SaaS brand.",
       tech: ["Image", "Motion Graphics", "After Effects"],
