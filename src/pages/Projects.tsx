@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
       title: "Neural Interface Dashboard",
       description:
         "Real-time neural data visualization with WebGL acceleration.",
-      tech: ["React", "Three.js", "D3.js"],
+      tech: ["Video", "Motion Graphics", "After Effects"],
       image: "/assets/henry.png",
       video: "/assets/coin.mp4",
       year: "2025",
@@ -30,19 +30,18 @@ const Projects: React.FC = () => {
       id: 2,
       title: "Design System Builder",
       description: "Modular UI framework for rapid prototyping and theming.",
-      tech: ["TypeScript", "Tailwind", "Framer Motion"],
+      tech: ["Video", "Motion Graphics", "After Effects"],
       image: "/assets/henry.png",
-      video: "/assets/project2.mp4",
+      video: "/assets/coin.mp4",
       year: "2024",
     },
     {
       id: 3,
       title: "Procedural World Engine",
-      description:
-        "GPU-driven terrain generation and dynamic weather simulation.",
-      tech: ["WebGPU", "Noise", "Physics"],
+      description: "GPU-driven terrain generation and dynamic weather simulation.",
+      tech: ["Video", "Motion Graphics", "After Effects"],
       image: "/assets/henry.png",
-      video: "/assets/project3.mp4",
+      video: "/assets/coin.mp4",
       year: "2025",
     },
     {
@@ -50,7 +49,7 @@ const Projects: React.FC = () => {
       title: "Brand Identity Design",
       description:
         "Minimalist visual identity and logo design for a SaaS brand.",
-      tech: ["Illustrator", "Figma", "Photoshop"],
+      tech: ["Image", "Motion Graphics", "After Effects"],
       image: "/assets/henry.png",
       year: "2023",
     },

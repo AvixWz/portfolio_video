@@ -9,6 +9,9 @@ interface Particle {
   vy: number;
   size: number;
   opacity: number;
+  hue: number;
+  isExplosion?: boolean;
+  life?: number; // lifespan for explosion particles
 }
 
 const ParticleBackground: React.FC = () => {
@@ -16,11 +19,11 @@ const ParticleBackground: React.FC = () => {
   const { isDark } = useTheme();
   const animationRef = useRef<number>();
   const particlesRef = useRef<Particle[]>([]);
+  const mouseRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -30,17 +33,36 @@ const ParticleBackground: React.FC = () => {
     };
 
     const createParticles = () => {
-      const particleCount = Math.min(50, Math.floor((canvas.width * canvas.height) / 15000));
+      const particleCount = Math.min(120, Math.floor((canvas.width * canvas.height) / 8000));
       particlesRef.current = [];
-
       for (let i = 0; i < particleCount; i++) {
         particlesRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1,
-          opacity: Math.random() * 0.3 + 0.1,
+          vx: (Math.random() - 0.5) * 1.2,
+          vy: (Math.random() - 0.5) * 1.2,
+          size: Math.random() * 3 + 1,
+          opacity: Math.random() * 0.5 + 0.1,
+          hue: Math.random() * 360,
+        });
+      }
+    };
+
+    const createExplosion = (x: number, y: number) => {
+      const count = 15 + Math.floor(Math.random() * 10);
+      for (let i = 0; i < count; i++) {
+        const angle = (Math.random() * Math.PI * 2);
+        const speed = Math.random() * 4 + 2;
+        particlesRef.current.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          size: Math.random() * 3 + 1,
+          opacity: 1,
+          hue: Math.random() * 360,
+          isExplosion: true,
+          life: 60 + Math.random() * 30, // lifespan in frames
         });
       }
     };
@@ -48,65 +70,93 @@ const ParticleBackground: React.FC = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      particlesRef.current.forEach((particle, index) => {
-        // Update position
+      for (let i = particlesRef.current.length - 1; i >= 0; i--) {
+        const particle = particlesRef.current[i];
+
+        // Move particle
         particle.x += particle.vx;
         particle.y += particle.vy;
 
-        // Bounce off edges
-        if (particle.x <= 0 || particle.x >= canvas.width) particle.vx *= -1;
-        if (particle.y <= 0 || particle.y >= canvas.height) particle.vy *= -1;
+        // Bounce edges for normal particles
+        if (!particle.isExplosion) {
+          if (particle.x <= 0 || particle.x >= canvas.width) particle.vx *= -1;
+          if (particle.y <= 0 || particle.y >= canvas.height) particle.vy *= -1;
+        }
 
-        // Keep particles in bounds
-        particle.x = Math.max(0, Math.min(canvas.width, particle.x));
-        particle.y = Math.max(0, Math.min(canvas.height, particle.y));
+        // Mouse repulsion for normal particles
+        if (!particle.isExplosion) {
+          const dxMouse = particle.x - mouseRef.current.x;
+          const dyMouse = particle.y - mouseRef.current.y;
+          const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+          if (distMouse < 100) {
+            particle.vx += dxMouse / 2000;
+            particle.vy += dyMouse / 2000;
+          }
+        }
+
+        // Explosion particles fade out
+        if (particle.isExplosion) {
+          particle.life! -= 1;
+          particle.opacity *= 0.95;
+          if (particle.life! <= 0) {
+            particlesRef.current.splice(i, 1);
+            continue;
+          }
+        }
 
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = isDark
-          ? `rgba(20, 184, 166, ${particle.opacity})`
-          : `rgba(16, 185, 129, ${particle.opacity})`;
+        ctx.fillStyle = `hsla(${particle.hue}, 80%, 60%, ${particle.opacity})`;
         ctx.fill();
 
-        // Draw connections
-        particlesRef.current.slice(index + 1, index + 6).forEach((otherParticle) => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 80) {
-            ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = isDark
-              ? `rgba(255, 255, 255, ${0.15 * (1 - distance / 80)})`
-              : `rgba(0, 0, 0, ${0.15 * (1 - distance / 80)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        });
-      });
+        // Draw connections for normal particles
+        if (!particle.isExplosion) {
+          particlesRef.current.slice(i + 1).forEach((otherParticle) => {
+            const dx = particle.x - otherParticle.x;
+            const dy = particle.y - otherParticle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 120) {
+              ctx.beginPath();
+              ctx.moveTo(particle.x, particle.y);
+              ctx.lineTo(otherParticle.x, otherParticle.y);
+              ctx.strokeStyle = `hsla(${particle.hue}, 80%, 60%, ${0.15 * (1 - distance / 120)})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          });
+        }
+      }
 
       animationRef.current = requestAnimationFrame(animate);
     };
+
+    const handleMouseMove = throttle((e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    }, 20);
+
+    // Random explosions every 2-4 seconds
+    const explosionInterval = setInterval(() => {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      createExplosion(x, y);
+    }, 2500 + Math.random() * 1500);
 
     resizeCanvas();
     createParticles();
     animate();
 
-    const handleResize = throttle(() => {
+    window.addEventListener('resize', throttle(() => {
       resizeCanvas();
       createParticles();
-    }, 250);
+    }, 250));
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
+      window.removeEventListener('mousemove', handleMouseMove);
+      clearInterval(explosionInterval);
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
   }, [isDark]);
 
@@ -114,7 +164,7 @@ const ParticleBackground: React.FC = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.4 }}
+      style={{ opacity: 0.8 }}
     />
   );
 };
