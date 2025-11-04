@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
 
   const socialLinks = [
     { icon: <Mail size={22} />, link: "mailto:youremail@example.com", label: "Email" },
-    { icon: <MessageCircle size={22} />, link: "https://discord.gg/svfJdpQN", label: "Discord" },
+    { icon: <MessageCircle size={22} />, link: "https://discord.gg/RSBC5RnP", label: "Discord" },
   ];
 
   const motivationalQuote = "“Work hard, nap harder.” – Anonymous";
